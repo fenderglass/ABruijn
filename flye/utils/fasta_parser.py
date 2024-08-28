@@ -6,7 +6,6 @@
 This module provides some basic FASTA I/O
 """
 
-from __future__ import absolute_import
 import logging
 import gzip
 import io
@@ -22,8 +21,6 @@ else:
     maketrans = bytes.maketrans
     _STR = bytes.decode
     _BYTES = str.encode
-
-from flye.six.moves import range
 
 
 logger = logging.getLogger()

@@ -6,11 +6,8 @@
 Quick and dirty alignment consensus
 """
 
-from __future__ import absolute_import
-from __future__ import division
 import logging
 from collections import defaultdict
-from flye.six.moves import range
 from flye.six import itervalues
 
 import multiprocessing
@@ -21,7 +18,6 @@ from flye.utils.sam_parser import SynchronizedSamReader, SynchonizedChunkManager
 import flye.config.py_cfg as cfg
 import flye.utils.fasta_parser as fp
 from flye.utils.utils import process_in_parallel
-from flye.six.moves import zip
 
 logger = logging.getLogger()
 

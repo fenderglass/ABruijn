@@ -8,8 +8,6 @@ Created on Wed Jan  4 03:50:31 2017
 @author: jeffrey_yuan
 """
 
-from __future__ import absolute_import
-from __future__ import division
 import os
 import logging
 from itertools import combinations, product
@@ -25,8 +23,6 @@ import flye.polishing.polish as pol
 
 import flye.trestle.divergence as div
 import flye.trestle.trestle_config as trestle_config
-from flye.six.moves import range
-from flye.six.moves import zip
 
 logger = logging.getLogger()
 

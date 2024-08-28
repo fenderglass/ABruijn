@@ -6,8 +6,6 @@
 Sets up some parameters for the run based on input
 """
 
-from __future__ import absolute_import
-from __future__ import division
 import logging
 
 import flye.utils.fasta_parser as fp

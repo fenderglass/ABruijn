@@ -8,7 +8,6 @@ License: MIT
 """
 
 # see: http://goo.gl/kTQMs
-from __future__ import division
 SYMBOLS = {
     'customary'     : ('B', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'),
     'customary_ext' : ('byte', 'kilo', 'mega', 'giga', 'tera', 'peta', 'exa',

@@ -6,7 +6,6 @@
 Modifies repeat graph using the Tresle output
 """
 
-from __future__ import absolute_import
 import logging
 from itertools import chain
 from collections import defaultdict
@@ -14,7 +13,6 @@ from collections import defaultdict
 import flye.utils.fasta_parser as fp
 from flye.repeat_graph.graph_alignment import iter_alignments
 from flye.six import iteritems
-from flye.six.moves import zip
 
 logger = logging.getLogger()
 

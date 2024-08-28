@@ -3,14 +3,12 @@
 #Released under the BSD license (see LICENSE file)
 
 
-from __future__ import absolute_import
 import flye.short_plasmids.utils as utils
 import flye.short_plasmids.unmapped_reads as unmapped
 import flye.utils.fasta_parser as fp
 from flye.utils.sam_parser import read_paf, read_paf_grouped
 import logging
 from flye.six import iteritems
-from flye.six.moves import range
 
 logger = logging.getLogger()
 

@@ -6,7 +6,6 @@
 Runs assemble binary
 """
 
-from __future__ import absolute_import
 import subprocess
 import logging
 import os

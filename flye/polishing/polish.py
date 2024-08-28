@@ -6,8 +6,6 @@
 Runs polishing binary in parallel and concatentes output
 """
 
-from __future__ import absolute_import
-from __future__ import division
 import logging
 import subprocess, multiprocessing
 import os
@@ -22,7 +20,6 @@ import flye.utils.fasta_parser as fp
 from flye.utils.utils import which
 import flye.config.py_cfg as cfg
 from flye.six import iteritems
-from flye.six.moves import range
 
 
 POLISH_BIN = "flye-modules"

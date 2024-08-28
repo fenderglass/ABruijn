@@ -8,11 +8,8 @@ Created on Wed Jan  4 03:50:31 2017
 @author: jeffrey_yuan
 """
 
-from __future__ import absolute_import
-from __future__ import division
 import logging
 from collections import defaultdict
-from flye.six.moves import range
 
 import multiprocessing
 import os.path
@@ -22,7 +19,6 @@ from flye.utils.sam_parser import SynchronizedSamReader, SynchonizedChunkManager
 import flye.utils.fasta_parser as fp
 from flye.utils.utils import process_in_parallel
 import flye.config.py_cfg as config
-from flye.six.moves import zip
 
 logger = logging.getLogger()
 

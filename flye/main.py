@@ -6,8 +6,6 @@
 Main logic of the package
 """
 
-from __future__ import print_function
-from __future__ import absolute_import
 import sys
 import os
 import logging
@@ -33,7 +31,6 @@ import flye.utils.fasta_parser as fp
 #import flye.trestle.trestle as tres
 #import flye.trestle.graph_resolver as tres_graph
 from flye.repeat_graph.repeat_graph import RepeatGraph
-from flye.six.moves import range
 
 if sys.version_info[0] == 2:
     raise Exception("Python 2 is unsupported")

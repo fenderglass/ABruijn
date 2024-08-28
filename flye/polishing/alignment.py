@@ -6,8 +6,6 @@
 Runs Minimap2 and parses its output
 """
 
-from __future__ import absolute_import
-from __future__ import division
 import os
 from collections import namedtuple
 import subprocess
@@ -19,7 +17,6 @@ import flye.utils.fasta_parser as fp
 from flye.utils.utils import which, get_median
 from flye.utils.sam_parser import AlignmentException
 from flye.six import iteritems
-from flye.six.moves import range
 
 
 logger = logging.getLogger()

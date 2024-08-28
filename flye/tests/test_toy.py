@@ -8,9 +8,6 @@
 Runs simple toy test
 """
 
-
-from __future__ import print_function
-
 import os
 import sys
 import subprocess
