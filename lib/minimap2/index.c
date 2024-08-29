@@ -192,6 +192,7 @@ int32_t mm_idx_cal_max_occ(const mm_idx_t *mi, float f)
 	if (f <= 0.) return INT32_MAX;
 	for (i = 0; i < 1<<mi->b; ++i)
 		if (mi->B[i].h) n += kh_size((idxhash_t*)mi->B[i].h);
+	if (n == 0) return INT32_MAX;
 	a = (uint32_t*)malloc(n * 4);
 	for (i = n = 0; i < 1<<mi->b; ++i) {
 		idxhash_t *h = (idxhash_t*)mi->B[i].h;
@@ -358,7 +359,7 @@ static void *worker_pipeline(void *shared, int step, void *in)
 		for (i = 0; i < s->n_seq; ++i) {
 			mm_bseq1_t *t = &s->seq[i];
 			if (t->l_seq > 0)
-				mm_sketch2(0, t->seq, t->l_seq, p->mi->w, p->mi->k, t->rid, p->mi->flag&MM_I_HPC, p->mi->flag&MM_I_SYNCMER, &s->a);
+				mm_sketch(0, t->seq, t->l_seq, p->mi->w, p->mi->k, t->rid, p->mi->flag&MM_I_HPC, &s->a);
 			else if (mm_verbose >= 2)
 				fprintf(stderr, "[WARNING] the length database sequence '%s' is 0\n", t->name);
 			free(t->seq); free(t->name);
@@ -446,7 +447,7 @@ mm_idx_t *mm_idx_str(int w, int k, int is_hpc, int bucket_bits, int n, const cha
 		sum_len += p->len;
 		if (p->len > 0) {
 			a.n = 0;
-			mm_sketch2(0, s, p->len, w, k, i, is_hpc, 0, &a); // TODO: mm_idx_str() doesn't support syncmer
+			mm_sketch(0, s, p->len, w, k, i, is_hpc, &a);
 			mm_idx_add(mi, a.n, a.a);
 		}
 	}

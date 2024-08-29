@@ -15,7 +15,7 @@ cd minimap2 && make
 ./minimap2 -ax map-pb ref.fa pacbio.fq.gz > aln.sam       # PacBio CLR genomic reads
 ./minimap2 -ax map-ont ref.fa ont.fq.gz > aln.sam         # Oxford Nanopore genomic reads
 ./minimap2 -ax map-hifi ref.fa pacbio-ccs.fq.gz > aln.sam # PacBio HiFi/CCS genomic reads (v2.19 or later)
-./minimap2 -ax asm20 ref.fa pacbio-ccs.fq.gz > aln.sam    # PacBio HiFi/CCS genomic reads (v2.18 or earlier)
+./minimap2 -ax lr:hq ref.fa ont-Q20.fq.gz > aln.sam       # Nanopore Q20 genomic reads (v2.27 or later)
 ./minimap2 -ax sr ref.fa read1.fa read2.fa > aln.sam      # short genomic paired-end reads
 ./minimap2 -ax splice ref.fa rna-reads.fa > aln.sam       # spliced long reads (strand unknown)
 ./minimap2 -ax splice -uf -k14 ref.fa reads.fa > aln.sam  # noisy Nanopore Direct RNA-seq
@@ -74,8 +74,8 @@ Detailed evaluations are available from the [minimap2 paper][doi] or the
 Minimap2 is optimized for x86-64 CPUs. You can acquire precompiled binaries from
 the [release page][release] with:
 ```sh
-curl -L https://github.com/lh3/minimap2/releases/download/v2.24/minimap2-2.24_x64-linux.tar.bz2 | tar -jxvf -
-./minimap2-2.24_x64-linux/minimap2
+curl -L https://github.com/lh3/minimap2/releases/download/v2.27/minimap2-2.27_x64-linux.tar.bz2 | tar -jxvf -
+./minimap2-2.27_x64-linux/minimap2
 ```
 If you want to compile from the source, you need to have a C compiler, GNU make
 and zlib development files installed. Then type `make` in the source code
@@ -139,12 +139,15 @@ parameters at the same time. The default setting is the same as `map-ont`.
 ```sh
 minimap2 -ax map-pb  ref.fa pacbio-reads.fq > aln.sam   # for PacBio CLR reads
 minimap2 -ax map-ont ref.fa ont-reads.fq > aln.sam      # for Oxford Nanopore reads
+minimap2 -ax map-iclr ref.fa iclr-reads.fq > aln.sam    # for Illumina Complete Long Reads
 ```
 The difference between `map-pb` and `map-ont` is that `map-pb` uses
 homopolymer-compressed (HPC) minimizers as seeds, while `map-ont` uses ordinary
-minimizers as seeds. Emperical evaluation suggests HPC minimizers improve
+minimizers as seeds. Empirical evaluation suggests HPC minimizers improve
 performance and sensitivity when aligning PacBio CLR reads, but hurt when aligning
-Nanopore reads.
+Nanopore reads. `map-iclr` uses an adjusted alignment scoring matrix that
+accounts for the low overall error rate in the reads, with transversion errors
+being less frequent than transitions.
 
 #### <a name="map-long-splice"></a>Map long mRNA/cDNA reads
 

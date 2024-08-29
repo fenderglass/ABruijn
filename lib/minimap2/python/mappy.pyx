@@ -3,7 +3,7 @@ from libc.stdlib cimport free
 cimport cmappy
 import sys
 
-__version__ = '2.24'
+__version__ = '2.27'
 
 cmappy.mm_reset_timer()
 
@@ -112,7 +112,7 @@ cdef class Aligner:
 	cdef cmappy.mm_idxopt_t idx_opt
 	cdef cmappy.mm_mapopt_t map_opt
 
-	def __cinit__(self, fn_idx_in=None, preset=None, k=None, w=None, min_cnt=None, min_chain_score=None, min_dp_score=None, bw=None, best_n=None, n_threads=3, fn_idx_out=None, max_frag_len=None, extra_flags=None, seq=None, scoring=None):
+	def __cinit__(self, fn_idx_in=None, preset=None, k=None, w=None, min_cnt=None, min_chain_score=None, min_dp_score=None, bw=None, bw_long=None, best_n=None, n_threads=3, fn_idx_out=None, max_frag_len=None, extra_flags=None, seq=None, scoring=None):
 		self._idx = NULL
 		cmappy.mm_set_opt(NULL, &self.idx_opt, &self.map_opt) # set the default options
 		if preset is not None:
@@ -125,6 +125,7 @@ cdef class Aligner:
 		if min_chain_score is not None: self.map_opt.min_chain_score = min_chain_score
 		if min_dp_score is not None: self.map_opt.min_dp_max = min_dp_score
 		if bw is not None: self.map_opt.bw = bw
+		if bw_long is not None: self.map_opt.bw_long = bw_long
 		if best_n is not None: self.map_opt.best_n = best_n
 		if max_frag_len is not None: self.map_opt.max_frag_len = max_frag_len
 		if extra_flags is not None: self.map_opt.flag |= extra_flags
@@ -172,6 +173,7 @@ cdef class Aligner:
 		cdef cmappy.mm_mapopt_t map_opt
 
 		if self._idx == NULL: return
+		if ((self.map_opt.flag & 4) and (self._idx.flag & 2)): return
 		map_opt = self.map_opt
 		if max_frag_len is not None: map_opt.max_frag_len = max_frag_len
 		if extra_flags is not None: map_opt.flag |= extra_flags
@@ -217,6 +219,7 @@ cdef class Aligner:
 		cdef int l
 		cdef char *s
 		if self._idx == NULL: return
+		if ((self.map_opt.flag & 4) and (self._idx.flag & 2)): return
 		s = cmappy.mappy_fetch_seq(self._idx, name.encode(), start, end, &l)
 		if l == 0: return None
 		r = s[:l] if isinstance(s, str) else s[:l].decode()

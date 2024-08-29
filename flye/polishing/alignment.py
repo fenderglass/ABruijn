@@ -241,7 +241,7 @@ def _run_minimap(reference_file, reads_files, num_proc, reads_type, out_file):
     elif reads_type in ["nano-raw", "nano-corrected"]:
         mode = "map-ont"
     elif reads_type == "nano-nano_hq":
-        mode = "map-ont"
+        mode = "lr:hq"
         extra_args = ["-k", "17"]
 
     cmdline = [MINIMAP_BIN, "'" + reference_file + "'"]
