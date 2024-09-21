@@ -15,11 +15,10 @@ import os
 import sys
 import subprocess
 import shutil
-from distutils.spawn import find_executable
 
 
 def test_toy():
-    if not find_executable("flye"):
+    if not shutil.which("flye"):
         sys.exit("flye is not installed!")
 
     print("Running toy test:\n")
