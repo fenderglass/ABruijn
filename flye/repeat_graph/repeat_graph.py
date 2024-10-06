@@ -8,7 +8,6 @@ This module provides repeat graph parsing/serializing functions,
 as well as some basic operations
 """
 
-from __future__ import division
 class RgEdge(object):
     __slots__ = ("node_left", "node_right", "edge_id", "repetitive",
                  "self_complement", "resolved", "mean_coverage",

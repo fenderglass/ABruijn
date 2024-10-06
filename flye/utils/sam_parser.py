@@ -6,9 +6,6 @@
 Provides multithreaded parser for SAM files
 """
 
-from __future__ import absolute_import
-from __future__ import division
-
 import os
 import re
 import sys
@@ -32,7 +29,6 @@ else:
     _STR = bytes.decode
     _BYTES = str.encode
 
-from flye.six.moves import range
 from flye.six import iteritems
 
 import flye.utils.fasta_parser as fp

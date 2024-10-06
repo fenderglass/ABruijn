@@ -6,11 +6,8 @@
 Separates alignment into small bubbles for further correction
 """
 
-from __future__ import absolute_import
-from __future__ import division
 import logging
 from bisect import bisect
-from flye.six.moves import range
 from collections import defaultdict
 from queue import Queue
 
@@ -22,7 +19,6 @@ import flye.config.py_cfg as cfg
 from flye.polishing.alignment import shift_gaps, get_uniform_alignments
 from flye.utils.sam_parser import SynchronizedSamReader, SynchonizedChunkManager
 from flye.utils.utils import process_in_parallel, get_median
-from flye.six.moves import zip
 
 
 logger = logging.getLogger()

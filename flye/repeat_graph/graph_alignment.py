@@ -8,7 +8,6 @@ to the repreat graph (as used internally in Flye)
 """
 
 
-from __future__ import division
 class OverlapRange(object):
     __slots__ = ("cur_id", "cur_len", "cur_start", "cur_end",
                  "ext_id", "ext_len", "ext_start", "ext_end",
